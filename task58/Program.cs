@@ -17,9 +17,11 @@ void programm()
   int col02 = GetNumberFromUser("Введите количество столбцов второй матрицы: ", "Ошибка ввода");
   if (col01 == row02)
   {
-    int[,] userArray01 = GetArrayUser01(row01, col01);
+    Console.WriteLine("Первая матрица");
+    int[,] userArray01 = GetArrayUser(row01, col01);
+    Console.WriteLine("Вторая матрица");
+    int[,] userArray02 = GetArrayUser(row02, col02);
     PrintArray(userArray01);
-    int[,] userArray02 = GetArrayUser02(row02, col02);
     PrintArray(userArray02);
     int[,] multUserArrays = GetMultArray(userArray01, userArray02);
     PrintArray(multUserArrays);
@@ -43,21 +45,12 @@ int GetNumberFromUser(string message, string errorMessage)
   }
 }
 
-int[,] GetArrayUser01(int rows, int columns)
+int[,] GetArrayUser(int rows, int columns)
 {
   int[,] result = new int[rows, columns];
   for (int i = 0; i < rows; i++)
     for (int j = 0; j < columns; j++)
-      result[i, j] = GetNumberFromUser("Первая матрица. Введите число(ввод слева направо по строкам): ", "Ошибка ввода");
-  return result;
-};
-
-int[,] GetArrayUser02(int rows, int columns)
-{
-  int[,] result = new int[rows, columns];
-  for (int i = 0; i < rows; i++)
-    for (int j = 0; j < columns; j++)
-      result[i, j] = GetNumberFromUser("Вторая матрица. Введите число(ввод слева направо по строкам): ", "Ошибка ввода");
+      result[i, j] = GetNumberFromUser("Введите число(ввод слева направо по строкам): ", "Ошибка ввода");
   return result;
 };
 
