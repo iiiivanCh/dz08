@@ -7,13 +7,48 @@
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
-int[,] GetMultArray(int[,] ar1, int[,] ar2)
-{
-  int[,] m = new int[ar1.GetLength(0), ar2.GetLength(1)];
+int[,,] userArray = GetMultArray(2, 2, 2);
+PrintArray(userArray);
 
-  for (int i = 0; i < ar1.GetLength(0); ++i)
-    for (int j = 0; j < ar2.GetLength(0); ++j)
-      for (int k = 0; k < ar2.GetLength(1); ++k)
-        m[i, k] += ar1[i, j] * ar2[j, k];
-  return m;
+
+int[,,] GetMultArray(int row, int col, int width)
+{
+  int[,,] result = new int[row, col, width];
+  int[] newNumber = new(row * col * width);
+  int size = 0;
+  for (int i = 0; i < row; ++i)
+    for (int j = 0; j < col; ++j)
+      for (int k = 0; k < width; ++k)
+      {
+        while (true)
+        {
+          result[i, j, k] = new Random().Next(10, 99 + 1);
+          newNumber[size] = result[i, j, k];
+        }
+        size++;
+      }
+  return result;
 };
+
+void PrintArray(int[,,] arr)
+{
+  Console.WriteLine();
+  for (int i = 0; i < arr.GetLength(0); i++)
+  {
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+      for (int k = 0; k < arr.GetLength(2); k++)
+      {
+        Console.Write($"{arr[i, j, k]}  ");
+      }
+      Console.WriteLine();
+    }
+    Console.WriteLine();
+  }
+};
+
+int random = GenerateNumber()
+{
+
+}
+
