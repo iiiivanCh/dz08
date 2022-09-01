@@ -7,25 +7,35 @@
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
+Console.Clear();
+
 int[,,] userArray = GetMultArray(2, 2, 2);
 PrintArray(userArray);
+PrintArrayCoordinats(userArray);
 
 
-int[,,] GetMultArray(int row, int col, int width)
+int[,,] GetMultArray(int row, int col, int wid)
 {
-  int[,,] result = new int[row, col, width];
-  int[] newNumber = new(row * col * width);
+  int[,,] result = new int[row, col, wid];
+  int[] newNumber = new int[row * col * wid];
   int size = 0;
-  for (int i = 0; i < row; ++i)
-    for (int j = 0; j < col; ++j)
-      for (int k = 0; k < width; ++k)
+  for (int i = 0; i < row; i++)
+    for (int j = 0; j < col; j++)
+      for (int k = 0; k < wid; k++)
       {
-        while (true)
+        bool correct = true;
+        while (correct)
         {
-          result[i, j, k] = new Random().Next(10, 99 + 1);
+          result[i, j, k] = new Random().Next(10, 100);
           newNumber[size] = result[i, j, k];
+          correct = false;
+          for (int l = 0; l < size; l++)
+          {
+            if (result[i, j, k] == newNumber[l])
+              correct = true;
+          }
         }
-        size++;
+        size += 1;
       }
   return result;
 };
@@ -44,11 +54,26 @@ void PrintArray(int[,,] arr)
       Console.WriteLine();
     }
     Console.WriteLine();
+
+
   }
 };
 
-int random = GenerateNumber()
+void PrintArrayCoordinats(int[,,] arr)
 {
+  Console.WriteLine("====================");
+  for (int i = 0; i < arr.GetLength(0); i++)
+  {
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+      for (int k = 0; k < arr.GetLength(2); k++)
+      {
+        Console.Write($"{arr[i, j, k]}({i},{j},{k})  ");
+      }
+      Console.WriteLine();
+    }
+  }
+  Console.WriteLine("====================");
+};
 
-}
 
